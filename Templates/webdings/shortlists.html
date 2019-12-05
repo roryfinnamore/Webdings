@@ -1,0 +1,52 @@
+{% extends 'webdings/base.html' %}
+
+{% block content %}
+<div class='title'>{{title}}</div>
+<form action="/webdings/shortlists" method="post">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="row">
+    <div>
+      {{ field.label_tag }}
+      {% if field.help_text %}
+        <sup>{{ field.help_text }}</sup>
+        {% endif %}
+        {% for error in field.errors %}
+         <div class="row">
+           <div class="error">{{error}}</div>
+         </div>
+        {% endfor %}
+     </div>
+     <div>
+       {{ field }}
+     </div>
+  </div>
+{% endfor %}
+  <input type="submit" value="Submit">
+</form>
+<table class='timeline'>
+    <tr>
+        <th>Category</th>
+        <th>Supplier</th>
+        <th>Cost</th>
+        <th>Contact</th>
+    </tr>
+{% for supplier in suppliers %}
+    <tr>
+        <td>
+            <a class="event">{{supplier.category}}</a>
+        </td>
+        <td>
+            <a class="event">{{supplier.supplier}}</a>
+        </td>
+        <td>
+            <a class="event">{{supplier.cost}}</a>
+        </td>
+        <td>
+            <a class="event">{{supplier.contact}}</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

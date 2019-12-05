@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'webdings/style.css' %}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width={}, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="nav-bar-container">
+        <div class="logo">
+            <img src="{% static 'webdings/logo.png' %}">
+        </div>
+        <div class="main-menu-container">
+            <div>Blog</div>
+            <div>About</div>
+            <div>Services</div>
+            <div>Help</div>
+        </div>
+        <div>
+            {% if user.is_authenticated %}
+                <p style="font-weight:bold;">Hi {{ user.username }}!</p>
+                <a class="login" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <p>You are not logged in</p>
+                <a class="login" href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+        
+    </div>
+    <div class="container">
+        <div class='side-bar-container'>
+                <div                
+                        {% if request.get_full_path == '/webdings/dashboard' %}
+                            class="active"
+                        {% endif %}>
+                    <a href="/webdings/dashboard">DASHBOARD</a>
+                </div>
+                <div
+                        {% if request.get_full_path == '/webdings/timeline' %}
+                            class="active"
+                        {% endif %}> 
+                <a href="/webdings/timeline">TIMELINE</a>
+                </div>
+                <div
+                        {% if request.get_full_path == '/webdings/shortlists' %}
+                            class="active"
+                        {% endif %}> 
+                <a href="/webdings/shortlists">SHORTLISTS</a>
+                </div>
+                <div
+                        {% if request.get_full_path == '/webdings/concepts' %}
+                            class="active"
+                        {% endif %}> 
+                <a href="/webdings/concepts">CONCEPTS</a>
+                </div>
+                <div
+                        {% if request.get_full_path == '/webdings/notes' %}
+                            class="active"
+                        {% endif %}> 
+                <a href="/webdings/notes">NOTES</a>
+                </div>
+                <div
+                        {% if request.get_full_path == '/webdings/guests' %}
+                            class="active"
+                        {% endif %}> 
+                <a href="/webdings/guests">GUESTS</a>
+                </div>
+                <!-- <div class="contributors-container">
+
+                </div> -->
+        </div>
+    
+        <div class=content>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'webdings/base.html' %}
+
+{% block content %}
+<div class='title'>Concepts</div>
+<form action="/webdings/concepts" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% for board in boards %}
+    <a data-pin-do="embedBoard" data-pin-board-width="1000" data-pin-scale-height="500" data-pin-scale-width="250" href='{{ board }}''></a>
+{% endfor %}
+
+<script async defer src="//assets.pinterest.com/js/pinit.js"></script>
+{% endblock %}

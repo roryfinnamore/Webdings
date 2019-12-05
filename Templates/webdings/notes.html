@@ -1,0 +1,44 @@
+{% extends 'webdings/base.html' %}
+
+{% block content %}
+<div class='title'>{{title}}</div>
+<form action="/webdings/notes" method="post">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="row">
+    <div>
+      {{ field.label_tag }}
+      {% if field.help_text %}
+        <sup>{{ field.help_text }}</sup>
+        {% endif %}
+        {% for error in field.errors %}
+         <div class="row">
+           <div class="error">{{error}}</div>
+         </div>
+        {% endfor %}
+     </div>
+     <div>
+       {{ field }}
+     </div>
+  </div>
+{% endfor %}
+  <input type="submit" value="Submit">
+</form>
+<table class='timeline'>
+    <tr>
+        <th>Note</th>
+        <th>Person Responsible</th>
+    </tr>
+{% for note in notes %}
+    <tr>
+        <td>
+            <a class="event">{{note.note}}</a>
+        </td>
+        <td>
+            <a class="event">{{note.person_responsible}}</a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}
