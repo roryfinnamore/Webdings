@@ -19,7 +19,7 @@
             <div>Blog</div>
             <div>About</div>
             <div>Services</div>
-            <div>Help</div>
+            <div><a style="color:black;" href="/admin/">Admin</a></div>
         </div>
         <div>
             {% if user.is_authenticated %}
@@ -41,34 +41,34 @@
                     <a href="/webdings/dashboard">DASHBOARD</a>
                 </div>
                 <div
-                        {% if request.get_full_path == '/webdings/timeline' %}
-                            class="active"
-                        {% endif %}> 
-                <a href="/webdings/timeline">TIMELINE</a>
-                </div>
-                <div
                         {% if request.get_full_path == '/webdings/shortlists' %}
                             class="active"
                         {% endif %}> 
-                <a href="/webdings/shortlists">SHORTLISTS</a>
+                    <a href="/webdings/shortlists">SHORTLISTS</a>
+                </div>
+                <div
+                        {% if request.get_full_path == '/webdings/timeline' %}
+                            class="active"
+                        {% endif %}> 
+                    <a href="/webdings/timeline">TIMELINE</a>
                 </div>
                 <div
                         {% if request.get_full_path == '/webdings/concepts' %}
                             class="active"
                         {% endif %}> 
-                <a href="/webdings/concepts">CONCEPTS</a>
+                    <a href="/webdings/concepts">CONCEPTS</a>
                 </div>
                 <div
                         {% if request.get_full_path == '/webdings/notes' %}
                             class="active"
                         {% endif %}> 
-                <a href="/webdings/notes">NOTES</a>
+                    <a href="/webdings/notes">NOTES</a>
                 </div>
                 <div
                         {% if request.get_full_path == '/webdings/guests' %}
                             class="active"
                         {% endif %}> 
-                <a href="/webdings/guests">GUESTS</a>
+                    <a href="/webdings/guests">GUESTS</a>
                 </div>
                 <!-- <div class="contributors-container">
 
